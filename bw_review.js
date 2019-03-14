@@ -5,8 +5,8 @@
    Tutorial 11
    Case Problem 1
 
-   Author: 
-   Date:   
+   Author: mickal Austin
+   Date:  3-14-19 
    
    Filename: bw_review.js
 	
@@ -33,19 +33,27 @@
       within textStr
 
 */
+var stars;
+//define the event listeners used in the page
+function init() {
+      stars = document.querySelectorAll("span#stars img");
+      for (var i = 0; i < lightStars.length; i++)
+            lightStars[i].mouseenter =
+
+}
 
 
 
-  
 
 
-  
-  
-  
+
+
+
+
 /*=================================================================*/
 
 function countCharacters(textStr) {
-   var commentregx = /\s/g;
-   var chars = textStr.replace(commentregx, "");
-   return chars.length;
-}   
+      var commentregx = /\s/g;
+      var chars = textStr.replace(commentregx, "");
+      return chars.length;
+}
