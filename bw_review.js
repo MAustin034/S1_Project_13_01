@@ -37,11 +37,30 @@ var stars;
 //define the event listeners used in the page
 function init() {
       stars = document.querySelectorAll("span#stars img");
-      for (var i = 0; i < lightStars.length; i++)
-            lightStars[i].mouseenter =
+      for (var i = 0; i < stars.length; i++) {
+            stars[i].style.cursor = "pointer";
+            document.addEventListener("mouseenter", lightStars);
+      }
+      document.getElementById("comment").addEventListener("keyup", count);
 
 }
 
+function lighStars(e) {
+
+  var starNumber = e.target.alt;
+
+  stars = document.querySelectorAll("span#stars img");
+
+   for (var i = 0; i < starNumber; i++){
+         stars[i].src = "bw_stars2.png";
+   }
+
+      for (var i = starNumber; i < 5 ; i++) {
+      stars[i].src = "bw_stars.png";
+      document.getElementById("rating") = starNumber + " stars"; 
+
+}
+}
 
 
 
