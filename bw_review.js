@@ -33,33 +33,31 @@
       within textStr
 
 */
-var stars;
+window.onload = init;
+var stars = document.querySelectorAll("span#stars img");
 //define the event listeners used in the page
 function init() {
-      stars = document.querySelectorAll("span#stars img");
       for (var i = 0; i < stars.length; i++) {
+            stars[i].addEventListener("mouseenter", lightStars);
             stars[i].style.cursor = "pointer";
-            document.addEventListener("mouseenter", lightStars);
       }
-      document.getElementById("comment").addEventListener("keyup", count);
+      // document.getElementById("comment").addEventListener("keyup", count);
 
 }
 
-function lighStars(e) {
+function lightStars(e) {
 
-  var starNumber = e.target.alt;
+      var starNumber = e.target.alt;
 
-  stars = document.querySelectorAll("span#stars img");
+      for (var i = 0; i < starNumber; i++) {
+            stars[i].src = "bw_star2.png";
+      }
 
-   for (var i = 0; i < starNumber; i++){
-         stars[i].src = "bw_stars2.png";
-   }
-
-      for (var i = starNumber; i < 5 ; i++) {
-      stars[i].src = "bw_stars.png";
-      document.getElementById("rating") = starNumber + " stars"; 
-
-}
+      for (var i = starNumber; i < 5; i++) {
+            stars[i].src = "bw_star.png";
+      }
+      document.getElementById("rating") = starNumber + " stars";
+      e.target.addEventListener('mouseleave', turnOffStars)
 }
 
 
