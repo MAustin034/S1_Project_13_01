@@ -33,21 +33,26 @@
       within textStr
 
 */
-window.onload = init;
-var stars = document.querySelectorAll("span#stars img");
+window.onload = init();
+
+
 //define the event listeners used in the page
 function init() {
+      var stars = document.querySelectorAll("span#stars img");
       for (var i = 0; i < stars.length; i++) {
-            stars[i].addEventListener("mouseenter", lightStars);
             stars[i].style.cursor = "pointer";
+            stars[i].addEventListener("mouseenter", lightStars);
+
       }
-      // document.getElementById("comment").addEventListener("keyup", count);
+      document.getElementById("comment").addEventListener("keyup", updateCount);
 
 }
 
 function lightStars(e) {
-
+      var stars = document.querySelectorAll("span#stars img");
       var starNumber = e.target.alt;
+
+
 
       for (var i = 0; i < starNumber; i++) {
             stars[i].src = "bw_star2.png";
@@ -56,8 +61,29 @@ function lightStars(e) {
       for (var i = starNumber; i < 5; i++) {
             stars[i].src = "bw_star.png";
       }
-      document.getElementById("rating") = starNumber + " stars";
-      e.target.addEventListener('mouseleave', turnOffStars)
+      document.getElementById("rating").value = starNumber + " stars";
+      e.target.addEventListener('mouseleave', turnOffStars);
+      e.target.addEventListener('click', function () {
+            e.target.removeEventListener('mouseleave', turnOffStars)
+      })
+}
+
+function turnOffStars() {
+      var stars = document.querySelectorAll("span#stars img");
+      for (var i = 0; i < stars.length; i++) {
+            stars[i].src = "bw_star.png";
+            document.getElementById('rating').value = "";
+      }
+}
+
+function updateCount() {
+      var commentText = document.getElementById('comment').value;
+      var charCount = countCharacters(commentText);
+      var wordCountBox = document.getElementById("wordCount");
+      wordCountBox.innerHTML = charCount + "/1000";
+      if (charCount > 1000) {
+            document.getElementById('wordCount').style.color = 'rgb(255,0, 0)'
+      }
 }
 
 
