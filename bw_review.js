@@ -36,7 +36,7 @@
 window.onload = init();
 
 
-//define the event listeners used in the page
+//defines the event listeners used in the page
 function init() {
       var stars = document.querySelectorAll("span#stars img");
       for (var i = 0; i < stars.length; i++) {
@@ -47,7 +47,7 @@ function init() {
       document.getElementById("comment").addEventListener("keyup", updateCount);
 
 }
-
+//star changes from white to yellow
 function lightStars(e) {
       var stars = document.querySelectorAll("span#stars img");
       var starNumber = e.target.alt;
@@ -67,7 +67,7 @@ function lightStars(e) {
             e.target.removeEventListener('mouseleave', turnOffStars)
       })
 }
-
+//the stars changes back to white
 function turnOffStars() {
       var stars = document.querySelectorAll("span#stars img");
       for (var i = 0; i < stars.length; i++) {
@@ -75,15 +75,22 @@ function turnOffStars() {
             document.getElementById('rating').value = "";
       }
 }
-
+//this function updates the word count typed within the text area box.
 function updateCount() {
       var commentText = document.getElementById('comment').value;
       var charCount = countCharacters(commentText);
       var wordCountBox = document.getElementById("wordCount");
-      wordCountBox.innerHTML = charCount + "/1000";
+      wordCountBox.value = charCount + "/1000";
+      //when the character count exceeds 1000 the count number box will change to red on white to indicate the user has exceeded the limit 
       if (charCount > 1000) {
-            document.getElementById('wordCount').style.color = 'rgb(255,0, 0)'
+            wordCountBox.style.backgroundColor = 'red';
+            wordCountBox.style.color = "white";
+            //when the user goes back to a number less than 1000 the color goes back
+      } else {
+            wordCountBox.style.backgroundColor = 'white';
+            wordCountBox.style.color = "black";
       }
+
 }
 
 
